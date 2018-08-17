@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,28 +6,24 @@ use App\blog;
 
 class PostController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth')->except(['index','details']);
-            
     }
-    public function index(){
-
-       
+    public function index()
+    {
         $posts = blog::latest()->get();
-        //temporary
-        return view('index',compact('posts'));
+        return view('index', compact('posts'));
     }
 
-    public function create(){
-
+    public function create()
+    {
         return view('create');
     }
     
-    public function store(Request $request){
-
-        $this->validate($request,[
+    public function store(Request $request)
+    {
+        $this->validate($request, [
             'title'=>'required',
             'body'=>'required'
         ]);
@@ -40,14 +35,10 @@ class PostController extends Controller
         $blog->save();
         
         return redirect('/');
-        
     }
-
-    public function details($id){
-
+    public function details($id)
+    {
         $post=blog::find($id);
-        return view('details',compact('post'));
-        
+        return view('details', compact('post'));
     }
-
 }

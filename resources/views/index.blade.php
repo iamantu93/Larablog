@@ -8,6 +8,6 @@
       {{ $post->created_at->toFormattedDateString() }}
       </p>
      <p>{{ $post->body }}</p> 
-    </div><!-- /.blog-post -->
+    </div>
     @endforeach
 @endsection
