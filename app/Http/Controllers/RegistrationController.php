@@ -7,6 +7,8 @@ use App\User;
 use App\blog;
 use App\Mail\Welcome;
 use App\Mail\WelcomeAgain;
+use App\Http\Requests\RegistrationRequest;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -14,26 +16,19 @@ class RegistrationController extends Controller
     {
         return view('register');
     }
-    public function store()
-    {
-        $this->validate(
-            request(),
-        [
-            'name'=>'required',
-            'email'=>'required|email',
-            'password'=>'required|confirmed'
-        ]
-        );
-            
+    public function store(RegistrationRequest $request)
+    {   
         $user= new User;
         $user->name=request('name');
         $user->password=bcrypt(request('password'));
         $user->email=request('email');
         $user->save();
+
+        auth()->login($user);
+        session()->flash('message','Thanks so much for signing up');
         
         \Mail::to($user)->send(new WelcomeAgain($user));
 
-        auth()->login($user);
-        return redirect('/');
+        return redirect()->home(); 
     }
 }

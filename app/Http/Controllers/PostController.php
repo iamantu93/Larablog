@@ -33,6 +33,8 @@ class PostController extends Controller
         $blog->body= request('body');
         $blog->user_id=auth()->id();
         $blog->save();
+
+        session()->flash('message','Your post have been published');
         
         return redirect('/');
     }

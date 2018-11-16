@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('partials.sidebar',function($view){
             $view->with('archives',\App\blog::archives());
         });
+
+        Schema::defaultStringLength(191);
     }
 
     /**
