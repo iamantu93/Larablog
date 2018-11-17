@@ -25,10 +25,11 @@ class RegistrationController extends Controller
         $user->save();
 
         auth()->login($user);
+
+        return redirect()->home();
+        
         session()->flash('message','Thanks so much for signing up');
         
-        \Mail::to($user)->send(new WelcomeAgain($user));
-
-        return redirect()->home(); 
+        \Mail::to($user)->send(new WelcomeAgain($user)); 
     }
 }
