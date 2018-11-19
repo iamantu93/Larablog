@@ -18,6 +18,7 @@ class RegistrationController extends Controller
     }
     public function store(RegistrationRequest $request)
     {   
+        // Save the user to database
         $user= new User;
         $user->name=request('name');
         $user->password=bcrypt(request('password'));

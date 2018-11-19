@@ -17,7 +17,8 @@ class SessionController extends Controller
     }
 
     public function store()
-    {
+    {   
+        // Authenticate the user
         if (auth()->attempt(request(['email','password']))) {
             return redirect('/');
         }
@@ -30,7 +31,8 @@ class SessionController extends Controller
     }
 
     public function destroy()
-    {
+    {   
+        //logout from system
         auth()->logout();
         return redirect('/');
     }
