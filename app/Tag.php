@@ -8,6 +8,11 @@ class Tag extends Model
 {
     public function blogs()
     {
-        return  $this->belongsToMany(blog::class);
+        return $this->belongsToMany(blog::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
     }
 }

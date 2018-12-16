@@ -22,7 +22,7 @@ class CreateTagsTable extends Migration
         Schema::create('blog_tag', function (Blueprint $table) {
             $table->integer('blog_id');
             $table->integer('tag_id');
-            $table->primary(['blog_id','tag_id']);
+            $table->primary(['blog_id', 'tag_id']);
         });
     }
 

@@ -19,18 +19,18 @@ class RegistrationController extends Controller
     public function store(RegistrationRequest $request)
     {   
         // Save the user to database
-        $user= new User;
-        $user->name=request('name');
-        $user->password=bcrypt(request('password'));
-        $user->email=request('email');
+        $user = new User;
+        $user->name = request('name');
+        $user->password = bcrypt(request('password'));
+        $user->email = request('email');
         $user->save();
 
         auth()->login($user);
 
         return redirect()->home();
-        
-        session()->flash('message','Thanks so much for signing up');
-        
-        \Mail::to($user)->send(new WelcomeAgain($user)); 
+
+        session()->flash('message', 'Thanks so much for signing up');
+
+        \Mail::to($user)->send(new WelcomeAgain($user));
     }
 }
