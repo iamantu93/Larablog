@@ -14,4 +14,3 @@ class TagsController extends Controller
 
     }
 }
-

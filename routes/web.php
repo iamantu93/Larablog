@@ -4,6 +4,7 @@ Route::get('/', 'PostController@index')->name('home');
 Route::get('/create', 'PostController@create');
 Route::post('/create', 'PostController@store');
 Route::get('/posts/{id}', 'PostController@details');
+Route::post('/posts/{id}/delete', 'PostController@destroy');
 
 Route::post('/posts/{id}/comments', 'CommentsController@store');
 

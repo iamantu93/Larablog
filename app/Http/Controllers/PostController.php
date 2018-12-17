@@ -52,4 +52,12 @@ class PostController extends Controller
         $post = blog::find($id);
         return view('details', compact('post'));
     }
+
+    // Delete a post
+    public function destroy($id)
+    {
+        $post = blog::find($id);
+        $post->delete();
+        return redirect('/');
+    }
 }

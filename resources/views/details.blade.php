@@ -1,7 +1,7 @@
 @extends('partials.master')
 
 @section('content')
-      <h2 class="blog-post-title">{{ $post->title }}</h2>
+      <h2 class="blog-post-title">{{ $post->title }} </h2>
 
       @if(count($post->tags))
       <ul>
@@ -19,6 +19,16 @@
       <p>{{ $post->user->name }} on
       {{ $post->created_at->toFormattedDateString() }}</p>
       <p>{{ $post->body }}</p> 
+
+    @if(auth()->check())
+      <div>
+        <form action="/posts/{{ $post->id}}/delete" method="POST">
+          {{ csrf_field() }}
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    @endif
+
      <hr>
      <div class="comments">
            <ul class="list-group">
