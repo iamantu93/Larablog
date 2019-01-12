@@ -60,4 +60,18 @@ class PostController extends Controller
         $post->delete();
         return redirect('/');
     }
+    public function edit($id)
+    {
+        $post = blog::find($id);
+        return view('edit', compact('post'));
+    }
+    public function update($id)
+    {
+        $post = blog::find($id);
+        $post->title = request('title');
+        $post->body = request('body');
+        $post->save();
+
+        return redirect('/');
+    }
 }

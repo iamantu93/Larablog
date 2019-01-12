@@ -22,10 +22,12 @@
 
     @if(auth()->check())
       <div>
-        <form action="/posts/{{ $post->id}}/delete" method="POST">
+        <form action="/posts/{{ $post->id }}/delete" method="POST">
           {{ csrf_field() }}
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
+        <hr>
+          <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit Post</a>     
       </div>
     @endif
 
